@@ -72,8 +72,36 @@ namespace MyApp // Note: actual namespace depends on the project name.
         resultado = num1 / num2;
         return resultado;
        }
+       public int valorAbsoluto (int num1){
+        int resultado = 0; 
+        if(num1 <0){
+            num1 = num1 *(-1);
+            resultado = num1;
+        }
+        else
+        {
+            resultado = num1;
+        }
+        return resultado;
 
-       public void pedirNum (){
+       }
+
+          public void pedirUnNumero (){
+        int numIngresado; 
+        bool valido = false;
+        string entrada; 
+        do
+        {
+        Console.WriteLine("ingrese un numero ");
+        entrada = Console.ReadLine(); 
+         valido = int.TryParse(entrada, out num1);
+         if (!valido)
+         {
+            Console.WriteLine(" el numero  ingresado no es valido");         
+         }
+        } while (!valido);
+        }
+       public void pedirNumeros (){
         int numIngresado; 
         bool valido = false;
         string entrada; 
@@ -120,16 +148,17 @@ namespace MyApp // Note: actual namespace depends on the project name.
                 Console.WriteLine("ingrese 2 para RESTAR ");              
                 Console.WriteLine("ingrese 3 para MULTIPLICAR ");
                 Console.WriteLine("ingrese 4 para DIVIDIR ");
+                 Console.WriteLine("ingrese 5 para VALOR ABSOLUTO ");
                 Console.WriteLine("ingrese 0 para SALIR ");
               
                 entrada = Console.ReadLine();
                 ingreso = int.TryParse(entrada, out opcion);
-                if (!ingreso || opcion <0 || opcion > 4)
+                if (!ingreso || opcion <0 || opcion > 5)
                 {
                     Console.WriteLine("ingreso una opcion no valida ");
 
                 }
-            } while (!ingreso|| opcion <0 || opcion > 4 );
+            } while (!ingreso|| opcion <0 || opcion > 5 );
 
             return opcion;
         }
@@ -141,29 +170,34 @@ namespace MyApp // Note: actual namespace depends on the project name.
             {
                 
                 case 1:
-                        calc1.pedirNum();
+                        calc1.pedirNumeros();
                         Console.Write(" El resultado de la suma es ");
                         Console.WriteLine(calc1.sumar(calc1.num1, calc1.num2));
                         break;
 
                     case 2:
-                        calc1.pedirNum();
+                        calc1.pedirNumeros();
                         Console.Write(" El resultado de la resta es ");
                        
                         Console.WriteLine(calc1.restar(calc1.num1, calc1.num2));
                         break;
 
                     case 3:
-                        calc1.pedirNum();
+                        calc1.pedirNumeros();
                          Console.Write(" El resultado de la multiplicacion es ");
                         Console.WriteLine(calc1.multiplicar(calc1.num1, calc1.num2));
                         break;
 
                     case 4:
-                        calc1.pedirNum();
+                        calc1.pedirNumeros();
                         Console.Write(" El resultado de la division es ");
                         Console.WriteLine(calc1.dividir(calc1.num1, calc1.num2));
                         break;
+                    case 5:
+                        calc1.pedirUnNumero();
+                        Console.Write(" El resultado del valor absoluto es ");
+                        Console.WriteLine(calc1.valorAbsoluto(calc1.num1));
+                        break;    
 
                     default:
                         Console.Write(" La opcion es incorrecta ");
